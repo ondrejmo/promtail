@@ -1,0 +1,1 @@
+{{ promtail_config | string | from_yaml | to_nice_yaml }}

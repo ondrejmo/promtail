@@ -1,0 +1,24 @@
+---
+
+promtail_version: "2.4.1"
+promtail_config:
+  server:
+    disable: true
+
+  positions:
+    filename: /tmp/positions.yaml
+
+  clients: []
+    # - url: "http://localhost/loki/api/v1/push"
+    #   basic_auth:
+    #     username: raspberry
+    #     password: pi
+
+  scrape_configs:
+    - job_name: system
+      static_configs:
+        - targets: [ localhost ]
+          labels:
+            job: varlogs
+            host: "{{ ansible_fqdn }}"
+            __path__: /var/log/**/*log
